@@ -5,15 +5,15 @@ const {
   resources,
   description,
   displayName,
-  author: _author,
-} = require('./package.json')
+  author: _author
+} = require('./package.json');
 
-const { getDevFolder } = require('./bin/utils')
+const { getDevFolder } = require('./bin/utils');
 
-const author = _author?.name ?? _author
-const currentYear = new Date().getFullYear()
-const authorInKebabCase = author.replace(/\s+/g, '-')
-const appId = `com.${authorInKebabCase}.${name}`.toLowerCase()
+const author = _author?.name ?? _author;
+const currentYear = new Date().getFullYear();
+const authorInKebabCase = author.replace(/\s+/g, '-');
+const appId = `com.${authorInKebabCase}.${name}`.toLowerCase();
 
 /** @type {import('electron-builder').Configuration} */
 module.exports = {
@@ -23,26 +23,31 @@ module.exports = {
 
   directories: {
     app: getDevFolder(main),
-    output: `dist/v${version}`,
+    output: `dist/v${version}`
   },
 
   mac: {
     icon: `${resources}/build/icons/icon.icns`,
-    category: 'public.app-category.utilities',
+    category: 'public.app-category.utilities'
   },
 
   dmg: {
-    icon: false,
+    icon: false
   },
 
   linux: {
     category: 'Utilities',
     synopsis: description,
-    target: ['AppImage', 'deb', 'pacman', 'freebsd', 'rpm'],
+    target: ['AppImage', 'deb', 'pacman', 'freebsd', 'rpm']
   },
 
   win: {
     icon: `${resources}/build/icons/icon.ico`,
-    target: ['nsis', 'portable', 'zip'],
+    target: ['nsis', 'portable', 'zip']
   },
-}
+  publish: {
+    provider: 'generic',
+    url: 'https://dev-cdn.eco-sign.net/static/eco-sign-2ways/',
+    updaterCacheDirName: 'eco-sign-2way-updater'
+  }
+};

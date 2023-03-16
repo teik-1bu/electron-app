@@ -1,26 +1,43 @@
 module.exports = {
+  root: true,
   env: {
-    es2020: true,
-    node: true,
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true
   },
-  extends: ['prettier', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaFeatures: {
+      jsx: true
+    },
     sourceType: 'module',
+    ecmaVersion: 2021
   },
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/eslint-recommended'
+  ],
   rules: {
-    '@typescript-eslint/no-empty-interface': 0,
-    'prettier/prettier': [
-      'error',
-      {
-        semi: false,
-        singleQuote: true,
-        tabWidth: 2,
-        useTabs: false,
-        trailingComma: 'es5',
-      },
-    ],
+    '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions'] }],
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-empty-interface': 'off'
   },
-}
+  overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off'
+      }
+    }
+  ]
+};

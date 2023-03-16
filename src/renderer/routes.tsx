@@ -1,4 +1,5 @@
 import { Router, Route } from 'electron-router-dom'
+import React from 'react'
 
 import { MainScreen, AboutScreen, AnotherScreen } from 'renderer/screens'
 

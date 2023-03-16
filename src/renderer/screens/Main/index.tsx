@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 import { Container, Heading, Button } from 'renderer/components'
+import { UpdateModal } from 'renderer/components';
 import { useWindowStore } from 'renderer/store'
 
 // The "App" comes from the context bridge in preload/index.ts
@@ -19,6 +20,7 @@ export function MainScreen() {
 
       store.setAboutWindowState(false)
     })
+    App.checkUpdate()
   }, [])
 
   function openAboutWindow() {
@@ -44,6 +46,7 @@ export function MainScreen() {
           Go to Another screen
         </Button>
       </nav>
+      <UpdateModal/>
     </Container>
   )
 }
